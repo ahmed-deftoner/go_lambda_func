@@ -1,6 +1,10 @@
 package main
 
-import "github.com/aws/aws-lambda-go/lambda"
+import (
+	"fmt"
+
+	"github.com/aws/aws-lambda-go/lambda"
+)
 
 type MyEvent struct {
 	Name string `json:"what is ur name?"`
@@ -12,7 +16,7 @@ type MyResponse struct {
 }
 
 func HandleLambdaEvent(event MyEvent) (MyResponse, error) {
-	return MyResponse
+	return MyResponse{Message: fmt.Sprintf("%s is %d years old", event.Name, event.Age)}, nil
 }
 
 func main() {
